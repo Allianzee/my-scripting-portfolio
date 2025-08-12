@@ -664,43 +664,6 @@
       if(e.key === 'Escape' && overlay.classList.contains('open')) closeOverlay();
     });
     <script>
-  // === Lazy-load video previews from data-video ===
-  const previewObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const work = entry.target;
-        const videoUrl = work.dataset.video;
-        if (videoUrl && videoUrl.includes('youtu')) {
-          let videoId = '';
-          if (videoUrl.includes('v=')) {
-            videoId = videoUrl.split('v=')[1].split('&')[0];
-          } else {
-            videoId = videoUrl.split('/').pop();
-          }
-          const thumb = work.querySelector('.thumb');
-          if (thumb) {
-            thumb.innerHTML = `
-              <iframe
-                src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0"
-                width="100%"
-                height="100%"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-              ></iframe>
-            `;
-            thumb.style.padding = "0";
-            thumb.style.background = "black";
-          }
-        }
-        previewObserver.unobserve(work);
-      }
-    });
-  }, { threshold: 0.4 });
-
-  document.querySelectorAll('.work').forEach(work => {
-    previewObserver.observe(work);
-  });
 </script>
 </body>
 </html>
