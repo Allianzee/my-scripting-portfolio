@@ -1,124 +1,567 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Allie's Domain</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Allie J — Scripting Portfolio</title>
+<link rel="icon" href="" />
+<style>
+  /* ---------- BASE ---------- */
+  :root{
+    --bg:#070707;
+    --card:#121212;
+    --muted:#bdbdbd;
+    --red:#ff2f2f;
+    --red-dim:#ff2f2f33;
+    --glass: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(255,47,47,0.03), transparent),
+                radial-gradient(1000px 400px at 90% 90%, rgba(255,47,47,0.02), transparent),
+                var(--bg);
+    color:#fff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+
+  /* ---------- HEADER / NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:60;
+    backdrop-filter: blur(6px);
+    background: linear-gradient(180deg, rgba(18,18,18,0.85), rgba(10,10,10,0.6));
+    border-bottom: 1px solid rgba(255,47,47,0.06);
+    padding:18px 28px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  .brand{
+    display:flex;
+    gap:14px;
+    align-items:center;
+  }
+  .logo{
+    width:46px;
+    height:46px;
+    border-radius:10px;
+    background:linear-gradient(135deg,var(--red),#7a0000);
+    box-shadow: 0 6px 30px var(--red-dim);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-family: monospace;
+    letter-spacing:1px;
+    color:#fff;
+  }
+  .title{
+    font-weight:700;
+    font-size:1.1rem;
+    color: #fff;
+  }
+  nav{margin-left:auto; display:flex; gap:14px; align-items:center;}
+  nav a{
+    color:var(--muted);
+    text-decoration:none;
+    font-size:0.95rem;
+    padding:8px 12px;
+    border-radius:8px;
+    transition: all .18s ease;
+  }
+  nav a:hover{ color:#fff; background: rgba(255,47,47,0.06); transform:translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.6); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    max-width:1200px;
+    margin:34px auto;
+    padding:28px;
+    display:grid;
+    grid-template-columns: 1fr 360px;
+    gap:24px;
+    align-items:center;
+  }
+  .hero-card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:14px;
+    padding:28px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    border: 1px solid rgba(255,47,47,0.04);
+    overflow:hidden;
+  }
+  .hero h1{
+    margin:0 0 8px 0;
+    font-size:2rem;
+    color:var(--red);
+    letter-spacing: -0.8px;
+  }
+  .hero p.lead{ color:var(--muted); margin:0 0 16px 0; font-size:1rem; }
+  .skill-badges{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; }
+  .badge{
+    background: rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.02);
+    padding:8px 10px;
+    border-radius:8px;
+    color:var(--muted);
+    font-size:0.85rem;
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .badge:hover{ transform:translateY(-6px); box-shadow: 0 10px 30px rgba(255,47,47,0.08); color:#fff; border-color: rgba(255,47,47,0.12); }
+
+  /* ---------- GRID / SECTIONS ---------- */
+  main{ max-width:1200px; margin:10px auto 100px; padding: 0 22px; }
+  section{ margin-bottom:36px; }
+
+  .section-head{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:14px;
+  }
+  .section-head h2{ margin:0; color:#fff; font-size:1.2rem; }
+  .section-head p{ margin:0; color:var(--muted); font-size:0.92rem; }
+
+  /* past groups list */
+  .groups{
+    display:flex;
+    gap:12px;
+    flex-direction:column;
+  }
+  .group{
+    background:var(--card);
+    border-radius:12px;
+    padding:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    border:1px solid rgba(255,47,47,0.03);
+    transition: transform .16s ease, box-shadow .16s ease;
+  }
+  .group:hover{ transform:translateY(-6px); box-shadow: 0 12px 40px rgba(255,47,47,0.05); }
+
+  .group .meta{ color:var(--muted); font-size:0.95rem; }
+  .group a{ color:var(--red); text-decoration:none; font-weight:600; }
+
+  /* works grid */
+  .works-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap:18px;
+  }
+  .work{
+    background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(255,47,47,0.03);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .work:hover{ transform:translateY(-8px); box-shadow: 0 20px 60px rgba(255,47,47,0.06); }
+  .work .thumb{
+    width:100%;
+    height:190px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.4), rgba(0,0,0,0.15));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-weight:700;
+    font-size:1rem;
+  }
+  .work .meta{
+    padding:14px;
+  }
+  .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+  .tag{ font-size:0.8rem; padding:6px 8px; border-radius:8px; background: rgba(255,255,255,0.02); color:var(--muted); }
+
+  .work .actions{
+    display:flex;
+    gap:8px;
+    padding:12px 14px 18px;
+    align-items:center;
+  }
+  .btn{
+    padding:10px 12px;
+    background: linear-gradient(90deg,var(--red),#b20000);
+    border:none;
+    color:#fff;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:0.9rem;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active{ transform:translateY(2px) scale(.996); }
+  .ghost{ background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); }
+
+  /* testimonials */
+  .testimonials{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+  .testimonial{
+    background:var(--card);
+    padding:16px;
+    border-radius:12px;
+    border:1px solid rgba(255,47,47,0.03);
+  }
+  .testimonial .who{ font-weight:700; color:#fff; margin-bottom:6px; }
+  .testimonial .meta{ color:var(--muted); font-size:0.9rem; margin-bottom:10px; }
+
+  /* tos */
+  .tos{ background:var(--card); padding:16px; border-radius:12px; border:1px solid rgba(255,47,47,0.03); color:var(--muted); }
+
+  /* payment methods */
+  .payments{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:10px; }
+  .payment-card{
+    min-width:180px;
+    padding:12px;
+    border-radius:10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+    border:1px solid rgba(255,255,255,0.02);
+  }
+  .payment-card h4{ margin:0 0 6px 0; color:var(--red); }
+  .payment-card p{ margin:0; color:var(--muted); font-size:0.9rem; }
+
+  /* footer */
+  footer{ text-align:center; color:var(--muted); margin:30px 0 120px; }
+
+  /* ---------- ANIMATIONS (scroll reveal) ---------- */
+  .reveal { opacity:0; transform: translateY(20px); transition: all .6s cubic-bezier(.2,.9,.2,1); }
+  .reveal.revealed{ opacity:1; transform:none; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:1000px){
+    .hero{ grid-template-columns: 1fr; padding: 18px; }
+    header{ padding:12px 16px; }
+  }
+  @media (max-width:520px){
+    nav{ display:none; }
+    .logo{ width:40px; height:40px; font-size:0.95rem; }
+    .hero h1{ font-size:1.6rem; }
+  }
+</style>
 </head>
 <body>
+  <header>
+    <div class="brand">
+      <div class="logo">AJ</div>
+      <div>
+        <div class="title">Allie J — Scripting & Systems</div>
+        <div style="font-size:0.78rem; color:var(--muted)">Creating with code. Promising the best experience.</div>
+      </div>
+    </div>
 
-    <!-- HEADER -->
-    <header>
-        <h1>Hi, Welcome to Allie's Domain</h1>
-        <p>Creating with Code. Promising the Best Experience.</p>
-        <p><strong>Expertise In:</strong> Game Scripting | Systems | UI/UX</p>
-    </header>
+    <nav>
+      <a href="#past-groups">Past Groups</a>
+      <a href="#past-works">Past Works</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#tos">Terms</a>
+      <a href="#payment">Payment</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero-card hero reveal">
+      <div>
+        <h1>Hi, welcome to Allie's Domain</h1>
+        <p class="lead">Scripting, systems, and dev tools for Roblox. Clean code, fast delivery, and systems built to scale.</p>
+        <div class="skill-badges">
+          <div class="badge">Scripting</div>
+          <div class="badge">Gameplay</div>
+          <div class="badge">Backend</div>
+          <div class="badge">UI/UX</div>
+          <div class="badge">Physics</div>
+        </div>
+      </div>
+    </section>
 
     <!-- PAST GROUPS -->
     <section id="past-groups" class="reveal">
+      <div class="section-head">
         <h2>Past Groups</h2>
-        <div class="group-card">
-            <h3>Keeping It Simple</h3>
-            <a href="https://www.roblox.com/groups/9757523/Keeping-It-Simple#!/about" target="_blank">View Group</a>
-            <p>2024 - 2024</p>
+        <p>Details about groups Allie has been a part of.</p>
+      </div>
+
+      <div class="groups">
+        <div class="group">
+          <div>
+            <div style="font-weight:700; color:#fff">Keeping It Simple</div>
+            <div class="meta">2023 - 2024 • Scripting / Systems</div>
+          </div>
+          <div><a href="https://www.roblox.com/groups/9757523/Keeping-It-Simple#!/about" target="_blank" rel="noopener">View Group</a></div>
         </div>
-        <div class="group-card">
-            <h3>BuilderBlox</h3>
-            <a href="https://www.roblox.com/groups/17104786/BuilderBlox-Studio#!/about" target="_blank">View Group</a>
-            <p>2024 - 2025</p>
+
+        <div class="group">
+          <div>
+            <div style="font-weight:700; color:#fff">BuilderBlox</div>
+            <div class="meta">2024 - 2025 • Builder / Systems</div>
+          </div>
+          <div><a href="https://www.roblox.com/groups/17104786/BuilderBlox-Studio#!/about" target="_blank" rel="noopener">View Group</a></div>
         </div>
+      </div>
     </section>
 
     <!-- PAST WORKS -->
-    <section id="past-works" class="reveal">
+    <section id="past-works" class="reveal" style="margin-top:22px;">
+      <div class="section-head">
         <h2>Past Works</h2>
-        <div class="works-grid">
-            <div class="work-card">
-                <h3>Advanced Raycasting Ship System</h3>
-                <p>A realistic ship movement & collision detection system.</p>
-                <button class="view-details" data-title="Advanced Raycasting Ship System" data-proof="N/A (Personal Project)" data-date="November 2023" data-desc="Uses raycasting for precise ship navigation and dynamic water physics." data-video="https://youtube.com">View Details</button>
+        <p>Showcase of Allie's previous projects and creations.</p>
+      </div>
+
+      <div class="works-grid">
+        <!-- Work item (duplicate this block for each project) -->
+        <article class="work">
+          <div class="thumb" style="background-image: linear-gradient(90deg, rgba(255,47,47,0.06), rgba(0,0,0,0.12));">
+            Raycasting Ship System Preview
+          </div>
+          <div class="meta">
+            <h3 style="margin:0;color:var(--red)">RayCasting Ship System</h3>
+            <p style="margin:6px 0 0 0; color:var(--muted);">A sophisticated raycasting system for realistic ship movement and collision detection.</p>
+            <div class="tags" aria-hidden>
+              <div class="tag">Scripting</div>
+              <div class="tag">Gameplay</div>
+              <div class="tag">Physics</div>
             </div>
-            <div class="work-card">
-                <h3>Dynamic Tower Defense AI</h3>
-                <p>Smart enemy pathing and wave generation system.</p>
-                <button class="view-details" data-title="Dynamic Tower Defense AI" data-proof="Commission - ClientX" data-date="January 2024" data-desc="An adaptive AI system for tower defense games with pathfinding and difficulty scaling." data-video="https://youtube.com">View Details</button>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="openVideo('https://www.youtube.com/watch?v=REPLACE_ID')">View Details</button>
+            <button class="btn ghost" onclick="copyText('RayCasting Ship System — Allie J')">Copy Title</button>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="thumb">Spawning Mechanism Preview</div>
+          <div class="meta">
+            <h3 style="margin:0;color:var(--red)">Spawning Mechanism</h3>
+            <p style="margin:6px 0 0 0; color:var(--muted);">Flexible and efficient spawning system with rules & filters.</p>
+            <div class="tags">
+              <div class="tag">Scripting</div>
+              <div class="tag">Backend</div>
+              <div class="tag">Gameplay</div>
             </div>
-            <div class="work-card">
-                <h3>Modular Menu System</h3>
-                <p>Fully customizable in-game menu UI.</p>
-                <button class="view-details" data-title="Modular Menu System" data-proof="Commission - ClientY" data-date="December 2023" data-desc="A responsive and modular UI menu system for Roblox games." data-video="https://youtube.com">View Details</button>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="openVideo('https://www.youtube.com/watch?v=REPLACE_ID')">View Details</button>
+            <button class="btn ghost" onclick="copyText('Spawning Mechanism — Allie J')">Copy Title</button>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="thumb">Grow a Garden System Preview</div>
+          <div class="meta">
+            <h3 style="margin:0;color:var(--red)">Grow a Garden System</h3>
+            <p style="margin:6px 0 0 0; color:var(--muted);">Plant, grow, and harvest system with progression and environment effects.</p>
+            <div class="tags">
+              <div class="tag">Scripting</div>
+              <div class="tag">Gameplay</div>
+              <div class="tag">Simulation</div>
             </div>
-            <div class="work-card">
-                <h3>Sanity & Fear Mechanic</h3>
-                <p>Immersive horror game mechanic.</p>
-                <button class="view-details" data-title="Sanity & Fear Mechanic" data-proof="N/A (Personal Project)" data-date="October 2023" data-desc="A psychological state system that changes visuals and gameplay based on player sanity." data-video="https://youtube.com">View Details</button>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="openVideo('https://www.youtube.com/watch?v=REPLACE_ID')">View Details</button>
+            <button class="btn ghost" onclick="copyText('Grow a Garden System — Allie J')">Copy Title</button>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="thumb">Dead Rails System Preview</div>
+          <div class="meta">
+            <h3 style="margin:0;color:var(--red)">Dead Rails System</h3>
+            <p style="margin:6px 0 0 0; color:var(--muted);">Rail-based traversal & puzzles, interactive tracks and hazards.</p>
+            <div class="tags">
+              <div class="tag">Scripting</div>
+              <div class="tag">Puzzles</div>
+              <div class="tag">Gameplay</div>
             </div>
-            <div class="work-card">
-                <h3>Interactive Farming System</h3>
-                <p>Plant, grow, and harvest crops with progression.</p>
-                <button class="view-details" data-title="Interactive Farming System" data-proof="Commission - ClientZ" data-date="September 2023" data-desc="A garden system with growth stages, seasons, and environmental effects." data-video="https://youtube.com">View Details</button>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="openVideo('https://www.youtube.com/watch?v=REPLACE_ID')">View Details</button>
+            <button class="btn ghost" onclick="copyText('Dead Rails System — Allie J')">Copy Title</button>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="thumb">Movement System Preview — GIF</div>
+          <div class="meta">
+            <h3 style="margin:0;color:var(--red)">Movement System</h3>
+            <p style="margin:6px 0 0 0; color:var(--muted);">Custom movement states, animation blending, and abilities.</p>
+            <div class="tags">
+              <div class="tag">Scripting</div>
+              <div class="tag">Animation</div>
+              <div class="tag">Gameplay</div>
             </div>
-            <div class="work-card">
-                <h3>Advanced Datastore</h3>
-                <p>Secure and efficient player data management.</p>
-                <button class="view-details" data-title="Advanced Datastore" data-proof="Commission - ClientA" data-date="August 2023" data-desc="A scalable datastore solution with anti-corruption features." data-video="https://youtube.com">View Details</button>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="openVideo('https://www.youtube.com/watch?v=REPLACE_ID')">View Details</button>
+            <button class="btn ghost" onclick="copyText('Movement System — Allie J')">Copy Title</button>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="thumb">Sanity System Preview</div>
+          <div class="meta">
+            <h3 style="margin:0;color:var(--red)">Sanity System</h3>
+            <p style="margin:6px 0 0 0; color:var(--muted);">Mechanic that affects player perception & gameplay (horror-ready).</p>
+            <div class="tags">
+              <div class="tag">Scripting</div>
+              <div class="tag">Gameplay</div>
+              <div class="tag">Horror</div>
             </div>
-            <div class="work-card">
-                <h3>Custom Movement System</h3>
-                <p>Parkour, sprinting, and climbing support.</p>
-                <button class="view-details" data-title="Custom Movement System" data-proof="N/A (Personal Project)" data-date="July 2023" data-desc="A movement framework supporting parkour, wall-running, and climbing." data-video="https://youtube.com">View Details</button>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="openVideo('https://www.youtube.com/watch?v=REPLACE_ID')">View Details</button>
+            <button class="btn ghost" onclick="copyText('Sanity System — Allie J')">Copy Title</button>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="thumb">Advanced Datastore System Preview</div>
+          <div class="meta">
+            <h3 style="margin:0;color:var(--red)">Advanced Datastore System</h3>
+            <p style="margin:6px 0 0 0; color:var(--muted);">Scalable datastore with anti-corruption & persistence features.</p>
+            <div class="tags">
+              <div class="tag">Scripting</div>
+              <div class="tag">Backend</div>
+              <div class="tag">Database</div>
             </div>
-            <div class="work-card">
-                <h3>Dead Rails System</h3>
-                <p>Interactive train-based puzzle gameplay.</p>
-                <button class="view-details" data-title="Dead Rails System" data-proof="Commission - ClientB" data-date="June 2023" data-desc="A railway-based traversal and puzzle system with interactive hazards." data-video="https://youtube.com">View Details</button>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="openVideo('https://www.youtube.com/watch?v=REPLACE_ID')">View Details</button>
+            <button class="btn ghost" onclick="copyText('Advanced Datastore System — Allie J')">Copy Title</button>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="thumb">Menu System Preview</div>
+          <div class="meta">
+            <h3 style="margin:0;color:var(--red)">Menu System</h3>
+            <p style="margin:6px 0 0 0; color:var(--muted);">Modular UI system with customizable layouts and integration.</p>
+            <div class="tags">
+              <div class="tag">Scripting</div>
+              <div class="tag">UI/UX</div>
+              <div class="tag">Frontend</div>
             </div>
-        </div>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="openVideo('https://www.youtube.com/watch?v=REPLACE_ID')">View Details</button>
+            <button class="btn ghost" onclick="copyText('Menu System — Allie J')">Copy Title</button>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <!-- REVIEWS -->
+    <!-- TESTIMONIALS -->
     <section id="reviews" class="reveal">
+      <div class="section-head">
         <h2>Client Testimonials</h2>
-        <blockquote>
-            <p>"Thank you for the system I paid around 250 GBP upfront, even though it took around 2 and 1/2 weeks I'm happy with the results."</p>
-            <cite>- Marvin ✓ Verified Client</cite>
-        </blockquote>
-        <blockquote>
-            <p>"Allie is one of the nicest people out there, with fast delivery time and quick communication ❤️"</p>
-            <cite>- Rayquazza ✓ Verified Client</cite>
-        </blockquote>
-        <blockquote>
-            <p>"The script works perfectly, with comments I asked for and was quick."</p>
-            <cite>- Kai ✓ Verified Client</cite>
-        </blockquote>
+        <p>Don't just take my word for it — here's what clients say.</p>
+      </div>
+
+      <div class="testimonials">
+        <div class="testimonial">
+          <div class="who">Marvin <span style="color:var(--muted); font-weight:600">✓ Verified Client</span></div>
+          <div class="meta">"Thank you for the system. I paid around 250 GBP upfront; even though it took around 2½ weeks I'm happy with the results."</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="who">Rayquazza <span style="color:var(--muted); font-weight:600">✓ Verified Client</span></div>
+          <div class="meta">"Allie is one of the nicest people out there, with fast delivery and quick communication."</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="who">Kai <span style="color:var(--muted); font-weight:600">✓ Verified Client</span></div>
+          <div class="meta">"The script works perfectly, with the comments I asked for, and was quick."</div>
+        </div>
+      </div>
     </section>
 
     <!-- TERMS -->
     <section id="tos" class="reveal">
+      <div class="section-head">
         <h2>Terms of Service</h2>
-        <p>All commission requests are handled with the utmost professionalism and dedication to quality. No refunds once work begins unless I can't deliver as promised.</p>
+        <p>Please review these before commissioning work.</p>
+      </div>
+
+      <div class="tos">
+        <h3 style="color:#fff; margin-top:0;">Commission & Refund Policy</h3>
+        <p>
+          All commission requests are handled professionally. Once work has started, cancellation will not qualify for a refund.
+          Refunds are only issued if the project cannot be completed due to Allie's demonstrated inability to fulfill the scope or if a significant fault in the delivered work is Allie's responsibility.
+          Client dissatisfaction due to changes in personal preference or scope after work has begun is not a valid reason for refund.
+        </p>
+        <p style="margin-top:8px;">
+          Communication is key — keep open dialogue throughout development to align expectations and address concerns.
+        </p>
+      </div>
     </section>
 
     <!-- PAYMENT -->
     <section id="payment" class="reveal">
+      <div class="section-head">
         <h2>Payment Methods</h2>
-        <p><strong>PayPal:</strong> GBP payments preferred. Currency conversion fees may apply.</p>
-        <p><strong>Robux:</strong> Accepted for commissions over 30,000 Robux.</p>
-    </section>
+        <p>Flexible options. Terms below.</p>
+      </div>
 
-    <!-- MODAL -->
-    <div id="project-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2 id="modal-title"></h2>
-            <p><strong>Commission Proof:</strong> <span id="modal-proof"></span></p>
-            <p><strong>Created On:</strong> <span id="modal-date"></span></p>
-            <p id="modal-desc"></p>
-            <a id="modal-video" href="#" target="_blank" class="btn">Watch Project Video</a>
+      <div>
+        <div class="payments">
+          <div class="payment-card">
+            <h4>PayPal</h4>
+            <p>Payments accepted in GBP. Conversion fees may apply if you pay in another currency — check rates before sending.</p>
+          </div>
+
+          <div class="payment-card">
+            <h4>Robux (Roblox)</h4>
+            <p>Robux accepted only for projects valued at 30,000 Robux or more. All Robux transactions handled securely through agreed methods.</p>
+          </div>
         </div>
-    </div>
+      </div>
+    </section>
+  </main>
 
-    <script src="script.js"></script>
+  <footer>
+    <div>Made by Allie J — Contact: replace-with-your-discord#0000</div>
+    <div style="margin-top:8px; color:var(--muted); font-size:0.9rem">© <span id="year"></span> Allie J</div>
+  </footer>
+
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // simple reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          e.target.classList.add('revealed');
+          io.unobserve(e.target);
+        }
+      })
+    }, {threshold: 0.12});
+    reveals.forEach(r=>io.observe(r));
+
+    // open video in modal (basic)
+    function openVideo(url){
+      // open a new window with the video or replace with modal if you want
+      window.open(url,'_blank');
+    }
+
+    // copy helper
+    function copyText(txt){
+      navigator.clipboard?.writeText(txt).then(()=> {
+        alert('Copied: ' + txt);
+      }, ()=>{ alert('Copy failed'); });
+    }
+
+    // Replace 'REPLACE_ID' in buttons easily via JS if you want to auto-insert
+    // (Optional: replace those URLs with actual youtube links in HTML)
+  </script>
 </body>
 </html>
+
