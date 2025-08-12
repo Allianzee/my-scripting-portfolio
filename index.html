@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Roblox Scripting Portfolio</title>
+<style>
+  /* ====== GLOBAL STYLES ====== */
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #0a0a0a;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  header {
+    background-color: #111;
+    padding: 20px;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff3c3c;
+    box-shadow: 0 0 20px #ff3c3c88;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  /* ====== ANIMATIONS ====== */
+  @keyframes fadeUp {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+  
+  /* ====== PROJECT GRID ====== */
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .project {
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 15px #000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+  
+  .project:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 0 20px #ff3c3c, 0 0 40px #ff3c3c44;
+  }
+  
+  iframe {
+    width: 100%;
+    height: 220px;
+    border: none;
+  }
+  
+  .project-info {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .project-info h2 {
+    margin: 10px 0;
+    color: #ff3c3c;
+  }
+  
+  .project-info p {
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  
+  /* ====== FOOTER ====== */
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #777;
+    border-top: 1px solid #222;
+    margin-top: 40px;
+  }
+
+  /* ====== RESPONSIVENESS ====== */
+  @media (max-width: 500px) {
+    .project-info h2 {
+      font-size: 1.2rem;
+    }
+    iframe {
+      height: 180px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>🔥 My Roblox Scripting Portfolio 🔥</header>
+
+<section class="projects">
+  <div class="project">
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" allowfullscreen></iframe>
+    <div class="project-info">
+      <h2>Dynamic Weather System</h2>
+      <p>A weather system with storms, rain, and sky transitions.</p>
+    </div>
+  </div>
+  
+  <div class="project">
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" allowfullscreen></iframe>
+    <div class="project-info">
+      <h2>Advanced Pathfinding</h2>
+      <p>Smart NPCs navigate around moving obstacles.</p>
+    </div>
+  </div>
+  
+  <div class="project">
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3" allowfullscreen></iframe>
+    <div class="project-info">
+      <h2>Custom Grappling Hook</h2>
+      <p>Physics-based grappling with smooth rope animation.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made by Allie J | Contact: yourdiscord#0000
+</footer>
+
+<script>
+  // Fade-in animation on scroll
+  const projects = document.querySelectorAll('.project');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.style.opacity = '1';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.2});
+  
+  projects.forEach(proj => observer.observe(proj));
+</script>
+
+</body>
+</html>
