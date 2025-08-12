@@ -1,89 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Allie's Scripting Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Allie's Domain</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>Welcome to Allie's Domain</h1>
-    <p>Creating with Code. Promising the Best Experience.</p>
-    <p><strong>Expertise In:</strong> Game Scripting, UI/UX, Backend Systems</p>
-  </header>
 
-  <main>
-    <!-- Past Groups -->
-    <section class="fade-in">
-      <h2>Past Groups</h2>
-      <div class="groups">
-        <div class="card">
-          <h3>Keeping It Simple</h3>
-          <p><a href="https://www.roblox.com/groups/9757523/Keeping-It-Simple#!/about" target="_blank">View Group</a></p>
-          <span>2024 - 2024</span>
+    <!-- HEADER -->
+    <header>
+        <h1>Hi, Welcome to Allie's Domain</h1>
+        <p>Creating with Code. Promising the Best Experience.</p>
+        <p><strong>Expertise In:</strong> Game Scripting | Systems | UI/UX</p>
+    </header>
+
+    <!-- PAST GROUPS -->
+    <section id="past-groups" class="reveal">
+        <h2>Past Groups</h2>
+        <div class="group-card">
+            <h3>Keeping It Simple</h3>
+            <a href="https://www.roblox.com/groups/9757523/Keeping-It-Simple#!/about" target="_blank">View Group</a>
+            <p>2024 - 2024</p>
         </div>
-        <div class="card">
-          <h3>BuilderBlox</h3>
-          <p><a href="https://www.roblox.com/groups/17104786/BuilderBlox-Studio#!/about" target="_blank">View Group</a></p>
-          <span>2024 - 2025</span>
+        <div class="group-card">
+            <h3>BuilderBlox</h3>
+            <a href="https://www.roblox.com/groups/17104786/BuilderBlox-Studio#!/about" target="_blank">View Group</a>
+            <p>2024 - 2025</p>
         </div>
-      </div>
     </section>
 
-    <!-- Past Works -->
-    <section class="fade-in">
-      <h2>Past Works</h2>
-      <div class="works">
-        <div class="card">
-          <h3>Placeholder Project 1</h3>
-          <p>Short description of placeholder project.</p>
-          <button class="view-details" data-title="Placeholder Project 1" data-proof="N/A" data-date="Jan 2024" data-desc="Full description for placeholder project 1." data-video="https://youtube.com">View Details</button>
+    <!-- PAST WORKS -->
+    <section id="past-works" class="reveal">
+        <h2>Past Works</h2>
+        <div class="works-grid">
+            <div class="work-card">
+                <h3>Advanced Raycasting Ship System</h3>
+                <p>A realistic ship movement & collision detection system.</p>
+                <button class="view-details" data-title="Advanced Raycasting Ship System" data-proof="N/A (Personal Project)" data-date="November 2023" data-desc="Uses raycasting for precise ship navigation and dynamic water physics." data-video="https://youtube.com">View Details</button>
+            </div>
+            <div class="work-card">
+                <h3>Dynamic Tower Defense AI</h3>
+                <p>Smart enemy pathing and wave generation system.</p>
+                <button class="view-details" data-title="Dynamic Tower Defense AI" data-proof="Commission - ClientX" data-date="January 2024" data-desc="An adaptive AI system for tower defense games with pathfinding and difficulty scaling." data-video="https://youtube.com">View Details</button>
+            </div>
+            <div class="work-card">
+                <h3>Modular Menu System</h3>
+                <p>Fully customizable in-game menu UI.</p>
+                <button class="view-details" data-title="Modular Menu System" data-proof="Commission - ClientY" data-date="December 2023" data-desc="A responsive and modular UI menu system for Roblox games." data-video="https://youtube.com">View Details</button>
+            </div>
+            <div class="work-card">
+                <h3>Sanity & Fear Mechanic</h3>
+                <p>Immersive horror game mechanic.</p>
+                <button class="view-details" data-title="Sanity & Fear Mechanic" data-proof="N/A (Personal Project)" data-date="October 2023" data-desc="A psychological state system that changes visuals and gameplay based on player sanity." data-video="https://youtube.com">View Details</button>
+            </div>
+            <div class="work-card">
+                <h3>Interactive Farming System</h3>
+                <p>Plant, grow, and harvest crops with progression.</p>
+                <button class="view-details" data-title="Interactive Farming System" data-proof="Commission - ClientZ" data-date="September 2023" data-desc="A garden system with growth stages, seasons, and environmental effects." data-video="https://youtube.com">View Details</button>
+            </div>
+            <div class="work-card">
+                <h3>Advanced Datastore</h3>
+                <p>Secure and efficient player data management.</p>
+                <button class="view-details" data-title="Advanced Datastore" data-proof="Commission - ClientA" data-date="August 2023" data-desc="A scalable datastore solution with anti-corruption features." data-video="https://youtube.com">View Details</button>
+            </div>
+            <div class="work-card">
+                <h3>Custom Movement System</h3>
+                <p>Parkour, sprinting, and climbing support.</p>
+                <button class="view-details" data-title="Custom Movement System" data-proof="N/A (Personal Project)" data-date="July 2023" data-desc="A movement framework supporting parkour, wall-running, and climbing." data-video="https://youtube.com">View Details</button>
+            </div>
+            <div class="work-card">
+                <h3>Dead Rails System</h3>
+                <p>Interactive train-based puzzle gameplay.</p>
+                <button class="view-details" data-title="Dead Rails System" data-proof="Commission - ClientB" data-date="June 2023" data-desc="A railway-based traversal and puzzle system with interactive hazards." data-video="https://youtube.com">View Details</button>
+            </div>
         </div>
-        <div class="card">
-          <h3>Placeholder Project 2</h3>
-          <p>Short description of placeholder project.</p>
-          <button class="view-details" data-title="Placeholder Project 2" data-proof="Client XYZ" data-date="Feb 2024" data-desc="Full description for placeholder project 2." data-video="https://youtube.com">View Details</button>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="reveal">
+        <h2>Client Testimonials</h2>
+        <blockquote>
+            <p>"Thank you for the system I paid around 250 GBP upfront, even though it took around 2 and 1/2 weeks I'm happy with the results."</p>
+            <cite>- Marvin ✓ Verified Client</cite>
+        </blockquote>
+        <blockquote>
+            <p>"Allie is one of the nicest people out there, with fast delivery time and quick communication ❤️"</p>
+            <cite>- Rayquazza ✓ Verified Client</cite>
+        </blockquote>
+        <blockquote>
+            <p>"The script works perfectly, with comments I asked for and was quick."</p>
+            <cite>- Kai ✓ Verified Client</cite>
+        </blockquote>
+    </section>
+
+    <!-- TERMS -->
+    <section id="tos" class="reveal">
+        <h2>Terms of Service</h2>
+        <p>All commission requests are handled with the utmost professionalism and dedication to quality. No refunds once work begins unless I can't deliver as promised.</p>
+    </section>
+
+    <!-- PAYMENT -->
+    <section id="payment" class="reveal">
+        <h2>Payment Methods</h2>
+        <p><strong>PayPal:</strong> GBP payments preferred. Currency conversion fees may apply.</p>
+        <p><strong>Robux:</strong> Accepted for commissions over 30,000 Robux.</p>
+    </section>
+
+    <!-- MODAL -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p><strong>Commission Proof:</strong> <span id="modal-proof"></span></p>
+            <p><strong>Created On:</strong> <span id="modal-date"></span></p>
+            <p id="modal-desc"></p>
+            <a id="modal-video" href="#" target="_blank" class="btn">Watch Project Video</a>
         </div>
-      </div>
-    </section>
-
-    <!-- Reviews -->
-    <section class="fade-in">
-      <h2>Client Testimonials</h2>
-      <div class="reviews">
-        <blockquote>"Allie delivered exactly what I needed, fast and clean." – Verified Client</blockquote>
-        <blockquote>"Top tier communication and quality scripting." – Verified Client</blockquote>
-      </div>
-    </section>
-
-    <!-- TOS -->
-    <section class="fade-in">
-      <h2>Terms of Service</h2>
-      <p>All commissions are final after work starts. Refunds only if project cannot be completed by me due to my own fault.</p>
-    </section>
-
-    <!-- Payment -->
-    <section class="fade-in">
-      <h2>Payment Methods</h2>
-      <p>PayPal (GBP) or Roblox Robux (min 30k).</p>
-    </section>
-  </main>
-
-  <!-- Modal -->
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
-      <h3 id="modal-title"></h3>
-      <p><strong>Commission Proof:</strong> <span id="modal-proof"></span></p>
-      <p><strong>Created On:</strong> <span id="modal-date"></span></p>
-      <p id="modal-desc"></p>
-      <div class="modal-buttons">
-        <a id="modal-video" href="#" target="_blank">Watch Project Video</a>
-        <button id="modal-close">Go Back</button>
-      </div>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
